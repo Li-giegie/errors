@@ -1,17 +1,17 @@
-package go_errors
+package errors
 
 import (
 	"bytes"
-	"errors"
+	e "errors"
 	"fmt"
 )
 
 func NewError(arg interface{}) error {
-	return errors.New(fmt.Sprint(arg))
+	return e.New(fmt.Sprint(arg))
 }
 
 func NewErrorf(format string,arg ...interface{}) error {
-	return errors.New(fmt.Sprintf(format,arg...))
+	return e.New(fmt.Sprintf(format,arg...))
 }
 
 func NewErrors(arg ...interface{}) error {
@@ -20,11 +20,11 @@ func NewErrors(arg ...interface{}) error {
 		buf.WriteString(fmt.Sprint(i))
 	}
 
-	return errors.New(buf.String())
+	return e.New(buf.String())
 }
 
 func Append(err error,arg interface{}) error {
-	return errors.New(err.Error() + fmt.Sprint(arg))
+	return e.New(err.Error() + fmt.Sprint(arg))
 }
 
 func Appends(err error,arg ...interface{}) error {
@@ -34,5 +34,5 @@ func Appends(err error,arg ...interface{}) error {
 		buf.WriteString(fmt.Sprint(i))
 	}
 
-	return errors.New(buf.String())
+	return e.New(buf.String())
 }
